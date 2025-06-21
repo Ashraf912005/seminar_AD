@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AD IN CS - Consultation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .fade-in { animation: fadeIn 0.6s ease-out; }
+        .nav-link:hover { transform: translateY(-2px); transition: transform 0.2s ease-in-out; }
+    </style>
+</head>
+<body class="bg-gray-100 font-sans">
+    <nav class="bg-indigo-900 text-white sticky top-0 z-50 shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="text-2xl font-bold">AD IN CS</div>
+                <div class="flex space-x-6">
+                    <a href="index.html" class="nav-link px-3 py-2 rounded-md hover:bg-indigo-700 transition">Home</a>
+                    <a href="about.html" class="nav-link px-3 py-2 rounded-md hover:bg-indigo-700 transition">About</a>
+                    <a href="services.html" class="nav-link px-3 py-2 rounded-md hover:bg-indigo-700 transition restricted-link">Services</a>
+                    <a href="consultation.html" class="nav-link px-3 py-2 rounded-md bg-indigo-700">Consultation</a>
+                    <a href="register.html" class="nav-link px-3 py-2 rounded-md hover:bg-indigo-700 transition">Register</a>
+                    <a href="login.html" class="nav-link px-3 py-2 rounded-md hover:bg-indigo-700 transition">Login</a>
+                    <a href="contact.html" class="nav-link px-3 py-2 rounded-md hover:bg-indigo-700 transition">Contact</a>
+                    <a href="#" id="logout-link" class="nav-link px-3 py-2 rounded-md hover:bg-indigo-700 transition hidden">Logout</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section class="py-16 bg-white">
+        <div class="max-w-xl mx-auto px-4 sm:px-6 lg:px-8 fade-in">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">Free Consultation</h2>
+            <form id="consultation-form">
+                <div class="mb-4">
+                    <label for="name" class="block text-gray-700 font-semibold mb-2">Name</label>
+                    <input type="text" id="name" name="name" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-600" required>
+                </div>
+                <div class="mb-4">
+                    <label for="email" class="block text-gray-700 font-semibold mb-2">Email</label>
+                    <input type="email" id="email" name="email" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-600" required>
+                </div>
+                <div class="mb-4">
+                    <label for="message" class="block text-gray-700 font-semibold mb-2">Query / Message</label>
+                    <textarea id="message" name="message" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-600" rows="5" required></textarea>
+                </div>
+                <button type="submit" class="bg-indigo-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-indigo-700 transition w-full">Submit Request</button>
+            </form>
+            <!-- Feedback div -->
+            <div id="feedback-message" class="mt-4 text-center"></div>
+        </div>
+    </section>
+
+    <footer class="bg-gray-800 text-white py-6">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p>© 2025 AD IN CS. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Check authentication status on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            const isAuthenticated = localStorage.getItem('isAuthenticated') === 'true';
+            const logoutLink = document.getElementById('logout-link');
+
+            if (!isAuthenticated) {
+                alert('Please log in to access the consultation page.');
+                window.location.href = 'login.html';
+            } else {
+                // Show logout link for authenticated users
+                logoutLink.classList.remove('hidden');
+
+                // Logout functionality
+                logoutLink.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    localStorage.setItem('isAuthenticated', 'false');
+                    alert('You have been logged out.');
+                    window.location.href = 'login.html';
+                });
+            }
+        });
+
+        // JavaScript for handling form submission and feedback
+        document.getElementById('consultation-form').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent default form submission (page reload)
+
+            // Get form values
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+            const feedbackDiv = document.getElementById('feedback-message');
+
+            // Basic validation (already handled by HTML 'required', but adding for clarity)
+            if (!name || !email || !message) {
+                feedbackDiv.innerHTML = '<p class="text-red-500">Please fill out all fields.</p>';
+                return;
+            }
+
+            // Simulate form submission (replace with actual backend logic if needed)
+            try {
+                // Here, you can add logic to send form data to a backend (e.g., via fetch)
+                // For now, simulate a successful submission
+                feedbackDiv.innerHTML = '<p class="text-green-500">Thank you, ' + name + '! Your request has been submitted successfully.</p>';
+
+                // Clear the form
+                this.reset();
+                
+                // Optional: Clear feedback message after 5 seconds
+                setTimeout(() => {
+                    feedbackDiv.innerHTML = '';
+                }, 5000);
+            } catch (error) {
+                feedbackDiv.innerHTML = '<p class="text-red-500">An error occurred. Please try again later.</p>';
+            }
+        });
+    </script>
+</body>
+</html>

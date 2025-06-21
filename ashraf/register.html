@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AD IN CS - Register</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .fade-in {
+      animation: fadeIn 0.6s ease-out;
+    }
+    .nav-link:hover {
+      transform: translateY(-2px);
+      transition: transform 0.2s ease-in-out;
+    }
+    .error-message {
+      color: #dc2626;
+      font-size: 0.875rem;
+      margin-top: 0.25rem;
+      display: none;
+    }
+    .error-input {
+      border-color: #dc2626 !important;
+    }
+    .fine-display {
+      background-color: #fef3c7;
+      padding: 1rem;
+      border-radius: 0.5rem;
+      border: 1px solid #facc15;
+      color: #78350f;
+      font-weight: 600;
+      text-align: center;
+      margin-top: 1.5rem;
+      display: none;
+    }
+  </style>
+</head>
+<body class="bg-gray-100 font-sans">
+  <nav class="bg-indigo-900 text-white sticky top-0 z-50 shadow-lg">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between h-16 items-center">
+        <div class="text-2xl font-bold">AD IN CS</div>
+        <div class="flex space-x-6">
+          <a href="index.html" class="nav-link px-3 py-2 rounded-md hover:bg-indigo-700 transition">Home</a>
+          <a href="about.html" class="nav-link px-3 py-2 rounded-md hover:bg-indigo-700 transition">About</a>
+          <a href="services.html" class="nav-link px-3 py-2 rounded-md hover:bg-indigo-700 transition restricted-link">Services</a>
+          <a href="consultation.html" class="nav-link px-3 py-2 rounded-md hover:bg-indigo-700 transition">Consultation</a>
+          <a href="signup.html" class="nav-link px-3 py-2 rounded-md bg-indigo-700">Signup</a>
+          <a href="login.html" class="nav-link px-3 py-2 rounded-md hover:bg-indigo-700 transition">Login</a>
+          <a href="contact.html" class="nav-link px-3 py-2 rounded-md hover:bg-indigo-700 transition">Contact</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <section class="py-16 bg-gray-100 fade-in">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-4xl font-bold text-gray-800 mb-6">Employee Registration</h2>
+      <form id="register-form" action="signup.php" method="POST" class="max-w-2xl mx-auto bg-white p-8 rounded-lg shadow">
+        <div class="mb-4 text-left">
+          <label for="name" class="block text-gray-700 font-semibold mb-2">Full Name</label>
+          <input type="text" id="name" name="name" required class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-600">
+          <p class="error-message" id="name-error">Name is required.</p>
+        </div>
+        <div class="mb-4 text-left">
+          <label for="email" class="block text-gray-700 font-semibold mb-2">Email</label>
+          <input type="email" id="email" name="email" required class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-600">
+          <p class="error-message" id="email-error">Valid email is required.</p>
+        </div>
+        <div class="mb-4 text-left">
+          <label for="password" class="block text-gray-700 font-semibold mb-2">Password</label>
+          <input type="password" id="password" name="password" required class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-600">
+          <p class="error-message" id="password-error">Password is required.</p>
+        </div>
+        <button type="submit" class="bg-indigo-600 text-white py-2 px-6 rounded-lg hover:bg-indigo-700 transition">Submit</button>
+      </form>
+    </div>
+  </section>
+
+  <footer class="bg-gray-800 text-white py-6 mt-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <p>© 2025 AD IN CS. All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>

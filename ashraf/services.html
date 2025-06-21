@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AD IN CS - Services</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .fade-in {
+      animation: fadeIn 0.6s ease-out;
+    }
+    .nav-link:hover {
+      transform: translateY(-2px);
+      transition: transform 0.2s ease-in-out;
+    }
+  </style>
+</head>
+<body class="bg-gray-100 font-sans">
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const isAuthenticated = localStorage.getItem('isAuthenticated') === 'true';
+      if (!isAuthenticated) {
+        alert('Please register or log in with anomaly-free data to access this page.');
+        window.location.href = 'login.html';
+      }
+    });
+  </script>
+
+  <nav class="bg-indigo-900 text-white sticky top-0 z-50 shadow-lg">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between h-16 items-center">
+        <div class="text-2xl font-bold">AD IN CS</div>
+        <div class="flex space-x-6">
+          <a href="index.html" class="nav-link px-3 py-2 rounded-md hover:bg-indigo-700 transition">Home</a>
+          <a href="about.html" class="nav-link px-3 py-2 rounded-md hover:bg-indigo-700 transition">About</a>
+          <a href="services.html" class="nav-link px-3 py-2 rounded-md bg-indigo-700" aria-current="page">Services</a>
+          <a href="consultation.html" class="nav-link px-3 py-2 rounded-md hover:bg-indigo-700 transition">Consultation</a>
+          <a href="signup.html" class="nav-link px-3 py-2 rounded-md hover:bg-indigo-700 transition">Signup</a>
+          <a href="login.html" class="nav-link px-3 py-2 rounded-md hover:bg-indigo-700 transition">Login</a>
+          <a href="contact.html" class="nav-link px-3 py-2 rounded-md hover:bg-indigo-700 transition">Contact</a>
+          <a href="#" id="logout-link" class="nav-link px-3 py-2 rounded-md hover:bg-indigo-700 transition hidden">Logout</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <section class="py-16 bg-gray-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h1 class="text-4xl font-bold text-gray-800 mb-12 text-center fade-in">Our Services</h1>
+      <div class="fade-in space-y-12">
+        <div>
+          <h2 class="text-xl font-semibold text-gray-800">Behavioral Anomalies</h2>
+          <p class="text-gray-600 mt-2">Deviations in behavior such as odd login times or abnormal activity. Detected using rule-based and machine learning methods. Prevent with MFA, monitoring, and training.</p>
+        </div>
+        <div>
+          <h2 class="text-xl font-semibold text-gray-800">Salary Anomalies</h2>
+          <p class="text-gray-600 mt-2">Payments outside normal ranges or sudden bonuses. Detected via rules and ML on payroll data. Prevent with approval workflows, audits, and benchmarks.</p>
+        </div>
+        <div>
+          <h2 class="text-xl font-semibold text-gray-800">Transaction Anomalies</h2>
+          <p class="text-gray-600 mt-2">Large or frequent irregular transactions. Detected using thresholds and neural networks. Prevent using limits, verification, and real-time systems.</p>
+        </div>
+        <div>
+          <h2 class="text-xl font-semibold text-gray-800">Time-Based Anomalies</h2>
+          <p class="text-gray-600 mt-2">Access or actions at odd hours (e.g., 1 AM–5 AM). Use time rules and ML temporal analysis. Prevent with restricted hours and alerts.</p>
+        </div>
+        <div>
+          <h2 class="text-xl font-semibold text-gray-800">Geo/IP Anomalies</h2>
+          <p class="text-gray-600 mt-2">Logins from unknown countries/IPs. Use geofencing, whitelisting, and login alerts. Detect using IP rules and geo-clustering.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="bg-gray-800 text-white py-6">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <p>© 2025 AD IN CS. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="auth.js"></script>
+  <script>
+    const logoutLink = document.getElementById('logout-link');
+
+    function updateLogoutLink() {
+      const isAuthenticated = localStorage.getItem('isAuthenticated') === 'true';
+      logoutLink.classList.toggle('hidden', !isAuthenticated);
+    }
+
+    logoutLink.addEventListener('click', (e) => {
+      e.preventDefault();
+      localStorage.setItem('isAuthenticated', 'false');
+      alert('You have been logged out.');
+      window.location.href = 'login.html';
+    });
+
+    updateLogoutLink();
+  </script>
+</body>
+</html>
